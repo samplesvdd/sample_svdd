@@ -224,7 +224,7 @@ if __name__ == "__main__":
             
             #parameters of the training SVDD. Tweak for performance/accuracy.
             outlier_fraction, kernel_s = 0.0001, 1.3
-            sample_size, resample_n, n_iter = 10, 2, 15
+            sample_size, resample_n, n_iter = 10, 1, 10
             stop_tol, maxiter = 1e-4, 5000
             
             #train using sampling svdd
@@ -285,7 +285,7 @@ if __name__ == "__main__":
     
             score_data = np.array([(x1, y1) for x1, y1 in zip(x.ravel(), y.ravel())])
     
-            #the OneClasSVM result corresponding to the sample data
+            #the OneClasSVM result corresponding to the sample method
             clf2 = result.OneClassSVM
     
             scores1 = clf1.predict(score_data)
@@ -308,15 +308,15 @@ if __name__ == "__main__":
 
         plt.figure(6)
         plt.grid(True)
-        plt.title("Sampling SVDD Performance")
-        plt.xlabel("Sample Size")
+        plt.title("Sampling SVDD Performance. Sample Size {0}".format(sample_size))
+        plt.xlabel("Input Data Size")
         plt.ylabel("Time Taken (in seconds)")
         plt.plot(dsize_list,tsample)
         
         plt.figure(7)
         plt.grid(True)
         plt.title("Full SVDD Performance")
-        plt.xlabel("Sample Size")
+        plt.xlabel("Input Data Size")
         plt.ylabel("Time Taken (in seconds)")
         plt.plot(dsize_list,tfull)
     
